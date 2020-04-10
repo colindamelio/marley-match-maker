@@ -1,17 +1,20 @@
 import memoryCards from './data.js';
-import { setMultipleAttr } from './helpers.js'
+import { setMultipleAttr, timer } from './helpers.js'
 
 const app = {};
 
 const board = document.querySelector('.board');
 const heading = document.querySelector('h2');
 const score = document.querySelector('span');
+const button = document.querySelector('button');
+const timerEl = document.querySelector('.timer');
 
 app.selectedTiles = [];
 app.selectedTilesID = [];
 app.correctMatches = [];
 
 app.createBoard = function() {
+  
   // random array shuffling
   memoryCards.sort(() => 0.5 - Math.random());
 
@@ -70,10 +73,21 @@ app.matchCheck = function() {
   }
 }
 
+app.events = function() {
+  button.addEventListener('click', () => {
+    timer(timerEl);
+  });
+}
+
+app.init = function() {
+  app.createBoard();
+  app.events();
+}
+
 // init when Document and subresources are ready
 if (document.readyState === 'complete') {
-  app.createBoard();
+  app.init();
 } else {
-  document.addEventListener('DOMContentLoaded', app.createBoard)
+  document.addEventListener('DOMContentLoaded', app.init)
 }
 

@@ -17,6 +17,17 @@ body {
   margin: 0 auto;
 }
 
+button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: white;
+  padding: 5px 10px;
+}
+
+h2.timer {
+  height: 50px;
+}
+
 .board {
   display: grid;
   grid-template-columns: 160px 160px 160px 160px;
